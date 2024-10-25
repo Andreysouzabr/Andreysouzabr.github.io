@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="../site-formatura-main/site-official-main/imagens/livro.jpg" type="image/x-icon">
+    <title>Formatura 3B</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(108, 161, 223);
+        }
+
+        /* Estilo do Cabeçalho */
+        header {
+            background-color: #f9fafc;
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center; /* Centraliza o conteúdo */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Centraliza os links */
+            background-color: #0033cc;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        /* Container para Carrossel e Texto */
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Carrossel de Imagens */
+        .carousel {
+            position: relative;
+            max-width: 50%; /* Define o tamanho como metade da largura da tela */
+            background-color: #0033cc;
+            margin-left: 0; /* Alinha à esquerda */
+            margin-top: 36px;
+        }
+
+        .carousel img {
+            width: 100%;
+            display: none;
+            height: auto; /* Mantém a proporção da imagem */
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 50%;
+            user-select: none;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .carousel .prev:hover, .carousel .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Texto ao lado do Carrossel */
+        .carousel-text {
+            width: 55%; /* Define o tamanho como 45% */
+            text-align: justify; /* Justifica o texto */
+            color: white;
+            padding-left: 20px;
+            font-size: 20px;
+        }
+
+        .borda-amarela {
+            background-color: #0033cc;
+            margin-top: 120px;
+        }
+
+        /* Seção de depoimentos */
+        .depoimentos {
+            
+            padding: 50px;
+            text-align: center; /* Centraliza o conteúdo */
+            background-image: url(https://img.elo7.com.br/product/zoom/45A89F2/fundo-fotografico-tecido-capelo-formatura-glitter-150x170-fundo-fotografico.jpg);
+        }
+
+        .depoimentos blockquote {
+            font-size: 2em;
+            margin: 0;
+            padding: 150px;
+            color: #ffffff;
+            border-left: 5px solid #333;
+            background-color: black;
+            border-radius: 29px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: justify;
+            width: 50%; /* Tamanho ajustado */
+            margin: 0 auto; /* Centraliza o bloco */
+            padding: 40px; /* Ajusta o espaçamento interno */
+        }
+     
+        .depoimentos cite {
+            display: block;
+            margin-top: 10px;
+            font-size: 1em;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 768px) {
+            /* Responsividade para celular */
+            .content {
+                flex-direction: column; /* Coloca o texto abaixo do carrossel */
+            }
+
+            .carousel {
+                max-width: 100%; /* Define o tamanho como 100% da tela em dispositivos menores */
+            }
+
+            .carousel-text {
+                width: 100%; /* Define o tamanho como 100% */
+                padding-left: 0;
+            }
+
+            .depoimentos blockquote {
+                font-size: 1em;
+            }
+        }
+
+        .titulodep {
+            color: white;
+            font-size: 40px;
+        }
+
+        .textodepoimento {
+            background-color: black;
+            border: #111;
+            border-radius: 29px;
+        }
+
+            /* Escopo para depoimentos */
+        .depoimentos {
+            position: relative;
+        }
+
+        .depoimentos .prev-depo, .depoimentos .next-depo {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            user-select: none;
+        }
+
+        .depoimentos .next-depo {
+            right: 10px;
+        }
+
+        .depoimentos .prev-depo {
+            left: 10px;
+        }
+
+        .depoimentos .prev-depo:hover, .depoimentos .next-depo:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        
+
+        @media only screen and (max-width: 768px) {
+            /* Responsividade para celular */
+            .content {
+                flex-direction: column; /* Coloca o texto abaixo do carrossel */
+            }
+
+            .carousel {
+                max-width: 100%; /* Define o tamanho como 100% da tela em dispositivos menores */
+            }
+
+            .carousel-text {
+                width: 100%; /* Define o tamanho como 100% */
+                padding-left: 0;
+            }
+
+            .depoimentos blockquote {
+                font-size: 1em;
+            }
+        }
+                   /* Setas de navegação dos depoimentos errroooooooooooooooo aquiiii */
+        .prev-depo, .next-depo {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            user-select: none;
+        }
+        #imagem-eu{
+           width: 100%;
+      
+
+        }
+        
+    </style>
+</head>
+<body>
+
+<!-- Cabeçalho -->
+<header>
+    <img src="img/logo.PNG" width="20%" alt="logo-formatura">
+    <nav>
+        <ul>
+            <li><a href="site-official-main/index.html">Início</a></li>
+            <li><a href="site-official-main/horario/horario.html">Cápsula do Tempo</a></li>
+            <li><a href="site-official-main/provas/provas.html">Projetos</a></li>
+            <li><a href="site2-main/index.html">Fotos</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Carrossel e Texto -->
+<div class="content">
+    <!-- Carrossel de Imagens -->
+    <div class="carousel">
+        <img id="imagem-eu" src="img/img2.jpg"  class="active">
+        <img id="imagem-eu" src="img/projeto-cred.jpg">
+        <img src="img/img3 (1).jpg">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <!-- Texto ao lado do Carrossel -->
+    <div class="carousel-text">
+        <p>
+            A formatura da turma 3B é um momento de celebração, em que todos os esforços dos estudantes ao longo dos anos de estudo são reconhecidos. Esta jornada é composta de muitos desafios e conquistas, e cada aluno tem sua própria história de superação. O evento visa não apenas celebrar o término de uma etapa, mas também projetar os futuros profissionais que se formarão no próximo ciclo da vida.
+        </p>
+    </div>
+</div>
+
+<section class="borda-amarela">
+    <br><br>
+</section>
+
+<section class="quem-somos">
+    <div class="container">
+      <h2>Quem Somos</h2>
+      <div class="quem-somos-content">
+        <div class="texto">
+          <p>
+            Somos uma turma unida por sonhos, desafios e conquistas! Ao longo dos anos, aprendemos juntos, crescemos e enfrentamos cada obstáculo lado a lado. Agora, estamos prontos para celebrar nossa jornada e começar um novo capítulo. Mais do que colegas, nos tornamos uma família, e esse site é a prova de tudo o que vivemos e conquistamos.
+          </p>
+          <p>
+            Aqui, compartilhamos nossa história, nossas memórias e a alegria de ter chegado até aqui. Juntos, mostramos que, com união e perseverança, podemos alcançar qualquer coisa!
+          </p>
+        </div>
+        <div class="imagens">
+          <img src="img/img4.jpg" alt="Imagem 1">
+          <img src="img/img1.jpg" alt="Imagem 2">
+          <img  src="img/sensor.jpg" alt="Imagem 3">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+<!-- Depoimentos -->
+<section class="depoimentos">
+    <h1 class="titulodep">Depoimentos</h1>
+    <blockquote class="textodepoimento">
+         <p id="depoimento-texto">"Como professor, acompanhar o crescimento de cada um de vocês ao longo desses anos tem sido uma experiência gratificante. Lembro-me do primeiro dia de aula, quando muitos ainda estavam tímidos e inseguros."</p>
+        <cite id="depoimento-autor">Breno</cite>
+        
+        <!-- Setas de navegação dos depoimentos -->
+        <a class="prev-depo" onclick="mudarDepoimento(-1)">&#10094;</a>
+        <a class="next-depo" onclick="mudarDepoimento(1)">&#10095;</a>
+
+
+
+    </blockquote>
+</section>
+
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel img');
+
+    function showSlides() {
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+        slides[slideIndex - 1].classList.add('active');
+        setTimeout(showSlides, 3000); // Muda a cada 3 segundos
+    }
+
+    function plusSlides(n) {
+        slideIndex += n - 1;
+        if (slideIndex < 0) {
+            slideIndex = slides.length - 1;
+        } else if (slideIndex >= slides.length) {
+            slideIndex = 0;
+        }
+        showSlides();
+    }
+
+    showSlides();
+
+
+ // Depoimentos
+ let depoimentoIndex = 0;
+    const depoimentos = [
+        { texto: '"Como professor, acompanhar o crescimento de cada um de vocês ao longo desses anos tem sido uma experiência gratificante. Lembro-me do primeiro dia de aula, quando muitos ainda estavam tímidos e inseguros."', autor: "Breno" },
+        { texto: '"A experiência de formatura foi incrível. Foi emocionante ver todos nós juntos, prontos para o próximo passo em nossas vidas."', autor: "Bruna" },
+        { texto: '"A amizade que construímos durante esses anos é algo que nunca vou esquecer. Obrigado a todos por fazerem parte dessa jornada."', autor: "Aldenice" },
+        { texto: '"Ensinar resolução de problemas é uma das minhas maiores paixões, pois acredito que essa habilidade vai muito além das questões matemáticas ou acadêmicas. É sobre encarar desafios, aprender a pensar de forma estratégica e nunca desistir até encontrar uma solução.', autor: "Rodrigo" }
+    ];
+
+    function mostrarDepoimento() {
+        document.getElementById('depoimento-texto').textContent = depoimentos[depoimentoIndex].texto;
+        document.getElementById('depoimento-autor').textContent = depoimentos[depoimentoIndex].autor;
+    }
+
+    function mudarDepoimento(n) {
+        depoimentoIndex += n;
+        if (depoimentoIndex < 0) {
+            depoimentoIndex = depoimentos.length - 1;
+        } else if (depoimentoIndex >= depoimentos.length) {
+            depoimentoIndex = 0;
+        }
+        mostrarDepoimento();
+    }
+
+    mostrarDepoimento();
+</script>
+
+</script>
+
+<!-- Seção de Arrecadações -->
+<section class="arrecadacoes">
+    <h2>Arrecadações</h2>
+    <div class="arrecadacoes-container">
+        <img src="img/camisa-terc.png" alt="Imagem Arrecadação 1">
+        <img src="img/cesta-pascoa.png" alt="Imagem Arrecadação 2">
+    </div>
+
+
+
+
+</section>
+
+
+
+
+
+
+</body>
+</html>
